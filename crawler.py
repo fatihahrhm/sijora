@@ -4,10 +4,10 @@ from datetime import date, timedelta
 import re, string, sqlite3, tweepy
 
 def crawling(keyword):
-    consumer_key = "h5g9VvA0TxfSFnru8fzSAQif4"
-    consumer_secret = "iIovoGF3J35LwgJ7Ht6SBhvWiDYdN8xn9SuVRvE4Z5vsZZYXCt"
-    access_token = "1067941386-2IigAD1hKedjeNLS3DKsInbdnZ33rutJwlWYTYk"
-    access_token_secret = "tEiKbY4HbS58g72EOcCnuVk09Th29qOSt5gT1FQlow9IE"
+    consumer_key = ""
+    consumer_secret = ""
+    access_token = ""
+    access_token_secret = ""
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
