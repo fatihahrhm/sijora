@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectPercentile, chi2
 
-df = pd.read_csv("/content/Drive/My Drive/datasets/dataset_training_clean.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/fatihahrhm/sijora/main/dataset/dataset_training_clean.csv")
 
 factory = StopWordRemoverFactory()
 stopwords = factory.get_stop_words()
