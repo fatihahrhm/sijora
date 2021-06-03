@@ -15,8 +15,13 @@ vector = vectorizer.fit_transform(df['Tweet'].values.astype('U')).toarray()
 
 X = vector
 y = df['Sentimen']
-chi = SelectPercentile(chi2, percentile=12).fit_transform(X, y)
+fs = SelectPercentile(chi2, percentile=17)
+chi = fs.fit_transform(X, y)
 chi.shape
+
+vec = pd.DataFrame(vector)
+features = vectorizer.get_feature_names()
+indices = [i for i in fs.get_support(indices = True)]
 
 X = chi
 y = df.drop(['Tweet'], axis=1).values
@@ -24,6 +29,3 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random
 
 mnb = MultinomialNB(alpha = 0.0090937)
 mnb.fit(X_train, y_train.ravel())
-
-
-
