@@ -10,20 +10,14 @@ df = pd.read_csv("https://raw.githubusercontent.com/fatihahrhm/sijora/main/datas
 factory = StopWordRemoverFactory()
 stopwords = factory.get_stop_words()
 
-vectorizer = TfidfVectorizer(stop_words=stopwords)
-vector = vectorizer.fit_transform(df['Tweet'].values.astype('U')).toarray()
+corpus = pd.read_csv("https://raw.githubusercontent.com/fatihahrhm/sijora/main/dataset/corpus.csv")
+corpus = list(corpus.iloc[:,0])
+
+vectorizer = TfidfVectorizer(stop_words=stopwords, vocabulary=corpus)
+tfidf = vectorizer.fit_transform(df['Tweet'].values.astype('U'))
+vector = tfidf.toarray()
 
 X = vector
-y = df['Sentimen']
-fs = SelectPercentile(chi2, percentile=17)
-chi = fs.fit_transform(X, y)
-chi.shape
-
-vec = pd.DataFrame(vector)
-features = vectorizer.get_feature_names()
-indices = [i for i in fs.get_support(indices = True)]
-
-X = chi
 y = df.drop(['Tweet'], axis=1).values
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=85)
 
